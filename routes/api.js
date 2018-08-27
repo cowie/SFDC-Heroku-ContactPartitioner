@@ -24,8 +24,8 @@ router.get('/getAccountByPhone', (req, res, next) => {
           console.log(qerr.stack);
           res.send({ error: qerr.stack });
         } else {
-          console.log(qres.rows[0]);
-          res.send(qres.rows[0]);
+          console.log(qres.rows);
+          res.send(qres.rows);
         }
       });
   });
