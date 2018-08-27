@@ -34,7 +34,7 @@ router.get('/getAccountByPhone', (req, res, next) => {
 /* GET users listing. */
 router.get('/getAccount', (req, res, next) => {
   // validate we got an accountID, or error out missing accountID
-  const accountID = 3;
+  const accountID = req.query.accountId;
   // query against pg, get account details
   pool.connect((err, client, done) => {
     if (err) throw err;
@@ -56,7 +56,7 @@ router.get('/getAccount', (req, res, next) => {
 
 router.get('/getContact', (req, res, next) => {
   // validate we got an accountID/contactID, or error out missing
-  const accountID = 3;
+  const accountID = req.query.accountId;
   // query against pg, get account details
   pool.connect((err, client, done) => {
     if (err) throw err;
