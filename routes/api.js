@@ -24,8 +24,10 @@ router.get('/getAccount', (req, res, next) => {
       done();
       if (qerr) {
         console.log(qerr.stack);
+        res.send('something borked');
       } else{
         console.log(qres.rows[0]);
+        res.send('something not so borked');
       }
     });
   });
