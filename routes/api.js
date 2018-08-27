@@ -20,7 +20,7 @@ router.get('/getAccount', (req, res, next) => {
   // query against pg, get account details
   pool.connect((err, client, done) => {
     if (err) throw err;
-    client.query('SELECT "customerSegment", "username", "customerType", "onlineRegistered", "trialCustomer", "status", "email", "phone", "amountDue", "lastPaymentAmount", "lastPaymentDate", "billingStreet", "billingCity", "billingState", "billingPostalCode", "serviceStreet", "serviceCity", "serviceState", "servicePostalCode",  "primaryContact" FROM account WHERE "accountNumber"  = $1', 
+    client.query('SELECT "accountNumber" AS part_accountNumber__c, "customerSegment" AS part_Customer_Segment__c, "username" AS part_Username__c, "customerType" AS part_Customer_Type__c, "onlineRegistered" AS 	part_Online_Registered__c, "trialCustomer" AS part_Trial_Customer__c, "status" AS part_status__c, "email" AS part_email__c, "phone", "amountDue" AS part_amount_due__c, "lastPaymentAmount" AS part_Last_Payment_Amount__c, "lastPaymentDate" AS part_Last_Payment_Date__c, "billingStreet", "billingCity", "billingState", "billingPostalCode", "serviceStreet" AS mailingStreet, "serviceCity" AS mailingCity, "serviceState" AS mailingState, "servicePostalCode" AS mailingPostalCode, "primaryContact"  FROM account WHERE "accountNumber"  = $1', 
       [accountID], (qerr, qres) => {
         done();
         if (qerr) {
@@ -42,7 +42,7 @@ router.get('/getContact', (req, res, next) => {
   // query against pg, get account details
   pool.connect((err, client, done) => {
     if (err) throw err;
-    client.query('SELECT "username", "email", "phone", "accountId", "street", "city", "state", "postalCode", "email", "phone", "firstname", "lastname" FROM "contact" where "accountId" = $1',
+    client.query('SELECT "username" AS username__c, "email" AS email, "phone" AS phone, "street" AS mailingStreet, "city" AS mailingCity, "state" AS mailingState, "postalCode" AS mailingPostalcode, "firstname", "lastname" FROM "contact" where "accountId" = $1',
       [accountID], (qerr, qres) => {
         done();
         if (qerr) {
