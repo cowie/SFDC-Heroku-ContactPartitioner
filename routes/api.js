@@ -38,8 +38,24 @@ router.get('/getAccount', (req, res, next) => {
 
 router.get('/getContact', (req, res, next) => {
   // validate we got an accountID/contactID, or error out missing
+  const accountID = 3;
   // query against pg, get account details
-  // create json payload, send back
+  pool.connect((err, client, done) => {
+    if (err) throw err;
+    client.query('SELECT "username", "email", "phone", "accountId", "street", "city", "state", "postalCode", "email", "phone", "firstname", "lastname" FROM "contact" where "accountId" = $1',
+      [accountID], (qerr, qres) => {
+        done();
+        if (qerr) {
+          console.log(qerr.stack);
+          res.send(qerr.stack);
+        } else {
+          console.log(qres.rows[0]);
+          // create json payload, send back
+          res.send(qres.rows[0]);
+        }
+      });
+  });
+  
   // close
 });
 
