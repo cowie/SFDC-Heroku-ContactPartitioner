@@ -20,7 +20,7 @@ router.get('/getAccount', (req, res, next) => {
   // query against pg, get account details
   pool.connect((err, client, done) => {
     if (err) throw err;
-    client.query('SELECT username FROM account WHERE accountNumber = $1', [1], (qerr, qres) => {
+    client.query('SELECT account.username FROM account WHERE account.accountNumber = $1', [1], (qerr, qres) => {
       done();
       if (qerr) {
         console.log(qerr.stack);
