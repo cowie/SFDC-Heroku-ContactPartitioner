@@ -5,12 +5,30 @@ const router = express.Router();
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL
+  connectionString: process.env.DATABASE_URL,
 });
 
 pool.on('error', (err, client) => {
   console.error('Unexpected error on idle client', err);
   process.exit(-1);
+});
+
+router.get('/getAccountByPhone', (req, res, next) => {
+  const phoneNumber = req.query.phoneNumber;
+  pool.connect((err, client, done) => {
+    if (err) throw err;
+    client.query('SELECT "accountNumber" AS part_accountNumber__c, "customerSegment" AS part_Customer_Segment__c, "username" AS part_Username__c, "customerType" AS part_Customer_Type__c, "onlineRegistered" AS 	part_Online_Registered__c, "trialCustomer" AS part_Trial_Customer__c, "status" AS part_status__c, "email" AS part_email__c, "phone", "amountDue" AS part_amount_due__c, "lastPaymentAmount" AS part_Last_Payment_Amount__c, "lastPaymentDate" AS part_Last_Payment_Date__c, "billingStreet", "billingCity", "billingState", "billingPostalCode", "serviceStreet" AS mailingStreet, "serviceCity" AS mailingCity, "serviceState" AS mailingState, "servicePostalCode" AS mailingPostalCode, "primaryContact"  FROM account WHERE "phone"  = $1',
+      [phoneNumber], (qerr, qres) => {
+        done();
+        if (qerr) {
+          console.log(qerr.stack);
+          res.send({ error: qerr.stack });
+        } else {
+          console.log(qres.rows[0]);
+          res.send(qres.rows[0]);
+        }
+      });
+  });
 });
 
 /* GET users listing. */
@@ -20,12 +38,12 @@ router.get('/getAccount', (req, res, next) => {
   // query against pg, get account details
   pool.connect((err, client, done) => {
     if (err) throw err;
-    client.query('SELECT "accountNumber" AS part_accountNumber__c, "customerSegment" AS part_Customer_Segment__c, "username" AS part_Username__c, "customerType" AS part_Customer_Type__c, "onlineRegistered" AS 	part_Online_Registered__c, "trialCustomer" AS part_Trial_Customer__c, "status" AS part_status__c, "email" AS part_email__c, "phone", "amountDue" AS part_amount_due__c, "lastPaymentAmount" AS part_Last_Payment_Amount__c, "lastPaymentDate" AS part_Last_Payment_Date__c, "billingStreet", "billingCity", "billingState", "billingPostalCode", "serviceStreet" AS mailingStreet, "serviceCity" AS mailingCity, "serviceState" AS mailingState, "servicePostalCode" AS mailingPostalCode, "primaryContact"  FROM account WHERE "accountNumber"  = $1', 
+    client.query('SELECT "accountNumber" AS part_accountNumber__c, "customerSegment" AS part_Customer_Segment__c, "username" AS part_Username__c, "customerType" AS part_Customer_Type__c, "onlineRegistered" AS 	part_Online_Registered__c, "trialCustomer" AS part_Trial_Customer__c, "status" AS part_status__c, "email" AS part_email__c, "phone", "amountDue" AS part_amount_due__c, "lastPaymentAmount" AS part_Last_Payment_Amount__c, "lastPaymentDate" AS part_Last_Payment_Date__c, "billingStreet", "billingCity", "billingState", "billingPostalCode", "serviceStreet" AS mailingStreet, "serviceCity" AS mailingCity, "serviceState" AS mailingState, "servicePostalCode" AS mailingPostalCode, "primaryContact"  FROM account WHERE "accountNumber"  = $1',
       [accountID], (qerr, qres) => {
         done();
         if (qerr) {
           console.log(qerr.stack);
-          res.send(qerr.stack);
+          res.send({ error: qerr.stack });
         } else {
           console.log(qres.rows[0]);
           res.send(qres.rows[0]);
@@ -47,7 +65,7 @@ router.get('/getContact', (req, res, next) => {
         done();
         if (qerr) {
           console.log(qerr.stack);
-          res.send(qerr.stack);
+          res.send({ error: qerr.stack });
         } else {
           console.log(qres.rows[0]);
           // create json payload, send back
@@ -55,7 +73,7 @@ router.get('/getContact', (req, res, next) => {
         }
       });
   });
-  
+
   // close
 });
 
