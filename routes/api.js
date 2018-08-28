@@ -38,17 +38,18 @@ router.get('/getAccountByAcctNumber', (req, res, next) => {
   // query against pg, get account details
   pool.connect((err, client, done) => {
     if (err) throw err;
-    client.query('SELECT "accountNumber" AS part_accountNumber__c, "customerSegment" AS part_Customer_Segment__c, "username" AS part_Username__c, "customerType" AS part_Customer_Type__c, "onlineRegistered" AS 	part_Online_Registered__c, "trialCustomer" AS part_Trial_Customer__c, "status" AS part_status__c, "email" AS part_email__c, "phone", "amountDue" AS part_amount_due__c, "lastPaymentAmount" AS part_Last_Payment_Amount__c, "lastPaymentDate" AS part_Last_Payment_Date__c, "billingStreet", "billingCity", "billingState", "billingPostalCode", "serviceStreet" AS mailingStreet, "serviceCity" AS mailingCity, "serviceState" AS mailingState, "servicePostalCode" AS mailingPostalCode, CONCAT (contact."firstname", \' \', contact."lastname") AS "Name" FROM Account INNER JOIN Contact ON account."primaryContact" = contact."contactId" WHERE "accountNumber"  = $1',
-      [accountNumber], (qerr, qres) => {
-        done();
-        if (qerr) {
-          console.log(qerr.stack);
-          res.send({ error: qerr.stack });
-        } else {
-          console.log(qres.rows[0]);
-          res.send(qres.rows[0]);
-        }
-      });
+    client.query('SELECT account."accountNumber" AS part_accountNumber__c, account."customerSegment" AS part_Customer_Segment__c, account."username" AS part_Username__c, account."customerType" AS part_Customer_Type__c, account."onlineRegistered" AS part_Online_Registered__c, account."trialCustomer" AS part_Trial_Customer__c, account."status" AS part_status__c, account."email" AS part_email__c, account."phone", account."amountDue" AS part_amount_due__c, account."lastPaymentAmount" AS part_Last_Payment_Amount__c, account."lastPaymentDate" AS part_Last_Payment_Date__c, account."billingStreet", account."billingCity", account."billingState", account."billingPostalCode", account."serviceStreet" AS mailingStreet, ' + 
+                 'account."serviceCity" AS mailingCity, account."serviceState" AS mailingState, account."servicePostalCode" AS mailingPostalCode, CONCAT (contact."firstname", \' \', contact."lastname") AS "Name" FROM Account INNER JOIN Contact ON account."primaryContact" = contact."contactId" WHERE "accountNumber"  = $1',
+    [accountNumber], (qerr, qres) => {
+      done();
+      if (qerr) {
+        console.log(qerr.stack);
+        res.send({ error: qerr.stack });
+      } else {
+        console.log(qres.rows[0]);
+        res.send(qres.rows[0]);
+      }
+    });
   });
 });
 
