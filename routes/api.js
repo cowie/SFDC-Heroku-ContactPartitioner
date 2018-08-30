@@ -17,7 +17,7 @@ router.get('/getAccountsByPhone', (req, res, next) => {
   const phoneNumber = req.query.phoneNumber;
   pool.connect((err, client, done) => {
     if (err) throw err;
-    client.query('SELECT account."accountNumber", account."username", account."phone", account."serviceStreet" AS "ShippingStreet", account."serviceCity" AS "ShippingCity", account."serviceState" AS "ShippingState", account."servicePostalCode" AS "ShippingPostalcode", CONCAT (contact."firstname", \' \', contact."lastname") AS "Name" FROM Account INNER JOIN Contact ON account."primaryContact" = contact."contactId" WHERE account."phone" = $1',
+    client.query('SELECT account."accountNumber", account."username", account."phone", account."serviceStreet" AS "mailingStreet", account."serviceCity" AS "mailingCity", account."serviceState" AS "mailingState", account."servicePostalCode" AS "mailingPostalcode", CONCAT (contact."firstname", \' \', contact."lastname") AS "Name" FROM Account INNER JOIN Contact ON account."primaryContact" = contact."contactId" WHERE account."phone" = $1',
       [phoneNumber], (qerr, qres) => {
         done();
         if (qerr) {
