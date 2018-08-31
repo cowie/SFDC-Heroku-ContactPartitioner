@@ -2,6 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
+const fs = require('fs');
+
 /* GET home page. */
 router.get('/', (req, res, next) => {
   fs.readFile(path.join(process.cwd(), 'Part-Account.json'), (err, data) => {
