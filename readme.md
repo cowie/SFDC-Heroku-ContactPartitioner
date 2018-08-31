@@ -30,6 +30,7 @@ Flow is - CTI pops to the LEX page with the phone number from the call. LEX page
 
 ## Setup
  1. Sign up for a Salesforce org @ developer.salesforce.com, or spin up a scratch org. Or make a new sandbox. Or go to Trailhead and get yo trail on. Whatever floats yer boat, just get an org.
- 2. Hit dis button to get you the Heroku instance kicked up. It'll spin up the PG DB addon and runtime, even create that database from all the csvs I loaded into this thing. 
- 3. 
+ 2. Hit dis button to get you the Heroku instance kicked up. It'll spin up the PG DB addon and runtime, even create that database from all the csvs I loaded into this thing. If you want custom data that's up to you bud, the code is fairly locked to the columns I've thrown in there, so you'll need to alter routes/api.js calls, as well as the metadata on the SF side, and potentially the LEX component. You could definitely make this better.  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+ 3. Go into your salesforce org, and add the Heroku domain you just deployed to in Remote Site Settings.
+
  
