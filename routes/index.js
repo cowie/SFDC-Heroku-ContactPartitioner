@@ -6,10 +6,7 @@ const fs = require('fs');
 const path = require('path');
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  fs.readFile(path.join(process.cwd(), 'Part-Account.json'), (err, data) => {
-    if (err)console.error(err);
-    else console.log(data.toString());
-  });
+  
   res.render('index', { title: 'Express' });
 });
 
