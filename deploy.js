@@ -24,7 +24,7 @@ const contCreateString = 'CREATE TABLE "public"."contact" ( '
 + '"email" text, "phone" text, "accountId" integer, "firstname" text, "lastname" text, '
 + 'PRIMARY KEY ("contactId"), FOREIGN KEY ("accountId") REFERENCES "public"."account"("accountNumber") '
 + '); COMMENT ON TABLE "public"."contact" IS \'demographic info on teh person behind the account. can expand to householding later\';';
-const acctPopulateString = 'INSERT INTO "public"."account"("accountNumber", "customerSegment", "username", "customerType","onlineRegiestered",'
+const acctPopulateString = 'INSERT INTO "public"."account"("accountNumber", "customerSegment", "username", "customerType","onlineRegistered",'
 + '"trialCustomer","status","email","phone","amountDue","lastPaymentAmount","lastPaymentDate","billingStreet","billingCity","billingState",'
 + '"billingPostalCode","serviceStreet","serviceCity","serviceState","servicePostalCode","primaryContact") VALUES ';
 const contPopulateString = 'INSERT INTO "public"."contact"("contactId", "username", "street", "city", "state", "postalCode", "email",'
