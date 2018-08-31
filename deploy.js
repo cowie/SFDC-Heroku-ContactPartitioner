@@ -46,6 +46,7 @@ function dataInserts() {
                 if (cerr)console.error(cerr);
                 else {
                   console.log('did it.');
+                  client.end();
                 }
               });
             }
@@ -62,7 +63,6 @@ client.query(acctCreateString, (err, res) => {
   } else {
     console.log('account creation done, ');
     client.query(contCreateString, (cerr, cres) => {
-        done();
       if (cerr) {
         console.error(cerr);
       } else {
