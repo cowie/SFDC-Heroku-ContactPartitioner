@@ -1,7 +1,7 @@
 {
     "name" : "SF/Node partition master",
     "description" : "Apis and DB to power a SF partioning play. Check out the github for info.",
-    "repository" : "oh right that",
+    "repository" : "https://github.com/cowie/SFDC-Heroku-ContactPartitioner",
     "keywords" : ["node", "express", "postgres", "salesforce"],
     "scripts" : {
         "postdeploy" : "node deploy.js"
