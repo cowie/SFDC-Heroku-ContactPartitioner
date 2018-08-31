@@ -34,14 +34,14 @@ function dataInserts() {
   fs.readFile(path.join(process.cwd(), 'Part-Account.json'), (err, data) => {
     if (err)console.error(err);
     else {
-      const acctData = data.toString();
+      const acctData = JSON.parse(data.toString());
       client.query(buildStatement(acctPopulateString, acctData), (aerr, ares) => {
         if (aerr) console.error(aerr);
         else {
           fs.readFile(path.join(process.cwd(), 'Part-Contact.json'), (err2, data2) => {
             if (err2)console.error(err2);
             else {
-              const contData = data2.toString();
+              const contData = JSON.parse(data2.toString());
               client.query(buildStatement(contPopulateString, contData), (cerr, cres) => {
                 if (cerr)console.error(cerr);
                 else {
