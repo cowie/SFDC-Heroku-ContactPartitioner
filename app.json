@@ -2,5 +2,13 @@
     "name" : "SF/Node partition master",
     "description" : "Apis and DB to power a SF partioning play. Check out the github for info.",
     "repository" : "oh right that",
-    "keywords" : ["node", "express", "postgres", "salesforce"]
+    "keywords" : ["node", "express", "postgres", "salesforce"],
+    "scripts" : {
+        "postdeploy" : "node deploy.js"
+    },
+    "addons" : [
+        {
+            "plan" : "heroku-postgresql:hobby-dev"
+        }
+    ]
 }

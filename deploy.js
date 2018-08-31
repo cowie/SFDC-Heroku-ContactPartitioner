@@ -1,8 +1,11 @@
 // feelin fine
 
 const { Client } = require('pg');
+const fs = require('fs');
+const path = require('path');
 
 const client = new Client();
+
 
 client.connect();
 
@@ -26,7 +29,29 @@ const contPopulateString = 'INSERT INTO "public"."contact"("contactId", "usernam
 + '"phone", "accountId", "firstname", "lastname") VALUES ';
 
 function dataInserts() {
-
+  fs.readFile(path.join(process.cwd(), 'Part-Account.json'), (err, data) => {
+    if (err)console.error(err);
+    else {
+      const acctData = data.toString();
+      client.query(buildStatement(acctPopulateString, acctData), (aerr, ares) => {
+        if (aerr) console.error(aerr);
+        else {
+          fs.readFile(path.join(process.cwd(), 'Part-Contact.json'), (err2, data2) => {
+            if (err2)console.error(err2);
+            else {
+              const contData = data2.toString();
+              client.query(buildStatement(contPopulateString, contData), (cerr, cres) => {
+                if (cerr)console.error(cerr);
+                else {
+                  console.log('did it.');
+                }
+              });
+            }
+          });
+        }
+      });
+    }
+  });
 }
 
 client.query(acctCreateString, (err, res) => {
@@ -44,7 +69,6 @@ client.query(acctCreateString, (err, res) => {
     });
   }
 });
-
 
 
 // buildStatement('insert into x(a, b, c) values', rows)
