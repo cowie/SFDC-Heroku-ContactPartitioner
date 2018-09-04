@@ -35,6 +35,19 @@ Flow is - CTI pops to the LEX page with the phone number from the call. LEX page
  4. Install this appEx package- https://login.salesforce.com/packaging/installPackage.apexp?p0=04t0b0000019pyf&isdtp=p1
  5. Copy/Paste the code components in the sfdx folder in this package into your SF org using Console. Start with Part_PartitionHelper.cls, then Part_PartitionController.cls, then part_CTIPopPanel component, then part_CTIPopPage app. I was too lazy to test coverage :D
  6. Activate MyDomain for your org. Get coffee, it takes a minute or so.
- 7. When done with MyDomain (like you tested and flipped over the domain) go to the following: 
+ 7. When done with MyDomain (like you tested and flipped over the domain) go to the following: http://Yourdomain.lightning.force.com/c/part_CTIPopPage.app
+ 8. Add ?phoneNumber= and use the below examples. get ype.
 
  
+
+
+ Sample phone numbers from the 'Master' Repo:
+* 3575523800 6499308566 2029972098 4964013191
+* 1824185397 3914222074 6111636704 5026348939
+* 9826434201 1567820229 7135718131 3592844694
+* 9227478980 6255542355 4761298623 6296200436
+* 5123678538 5829519446 1137105873 4084078583
+
+Sample phone numbers from DE standard set:
+* 7852416200 5127576000 5034217800 6508673450
+* 3125961000 0144274427 4159017000 2128425500
