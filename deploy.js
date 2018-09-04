@@ -17,7 +17,7 @@ const acctCreateString = 'CREATE TABLE "public"."account" ( '
 + '"status" text, "email" text, "phone" text, "amountDue" real, '
 + '"lastPaymentAmount" real, "lastPaymentDate" date, "billingStreet" text, "billingCity" text, '
 + '"billingState" text, "billingPostalCode" text, "serviceStreet" text, "serviceCity" text, '
-+ '"serviceState" text, "servicePostalCode" text, "primaryContact" text, '
++ '"serviceState" text, "servicePostalCode" text, "primaryContact" integer, '
 + 'PRIMARY KEY ("accountNumber") ); COMMENT ON TABLE "public"."account" IS \'product side account table\';';
 const contCreateString = 'CREATE TABLE "public"."contact" ( '
 + '"contactId" serial, "username" text, "street" text, "city" text, "state" text, "postalCode" text, '
