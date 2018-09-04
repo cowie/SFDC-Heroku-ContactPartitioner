@@ -57,6 +57,7 @@ router.get('/getContact', (req, res, next) => {
   // validate we got an accountID/contactID, or error out missing
   const accountID = req.query.accountId;
   // query against pg, get account details
+  console.log('here is where contact things go');
   pool.connect((err, client, done) => {
     if (err) throw err;
     client.query('SELECT "username" AS cdgPartition__username__c, "email" AS email, "phone" AS phone, "street" AS mailingStreet, "city" AS mailingCity, "state" AS mailingState, "postalCode" AS mailingPostalcode, "firstname", "lastname" FROM "contact" where "accountId" = $1',
