@@ -55,7 +55,7 @@ router.get('/getAccountByAcctNumber', (req, res, next) => {
 
 router.get('/getContact', (req, res, next) => {
   // validate we got an accountID/contactID, or error out missing
-  const accountID = req.query.accountId;
+  const accountID = req.query.accountNumber;
   // query against pg, get account details
   console.log('here is where contact things go');
   pool.connect((err, client, done) => {
