@@ -38,7 +38,7 @@ router.get('/getAccountByAcctNumber', (req, res, next) => {
   // query against pg, get account details
   pool.connect((err, client, done) => {
     if (err) throw err;
-    client.query('SELECT account."accountNumber" AS part_accountNumber__c, account."customerSegment" AS part_Customer_Segment__c, account."username" AS part_Username__c, account."customerType" AS part_Customer_Type__c, account."onlineRegistered" AS part_Online_Registered__c, account."trialCustomer" AS part_Trial_Customer__c, account."status" AS part_status__c, account."email" AS part_email__c, account."phone", account."amountDue" AS part_amount_due__c, account."lastPaymentAmount" AS part_Last_Payment_Amount__c, account."lastPaymentDate" AS part_Last_Payment_Date__c, account."billingStreet", account."billingCity", account."billingState", account."billingPostalCode", account."serviceStreet" AS "ShippingStreet", ' +
+    client.query('SELECT account."accountNumber" AS cdgPartition__part_accountNumber__c, account."customerSegment" AS cdgPartition__part_Customer_Segment__c, account."username" AS cdgPartition__part_Username__c, account."customerType" AS part_Customer_Type__c, account."onlineRegistered" AS cdgPartition__part_Online_Registered__c, account."trialCustomer" AS cdgPartition__part_Trial_Customer__c, account."status" AS cdgPartition__part_status__c, account."email" AS cdgPartition__part_email__c, account."phone", account."amountDue" AS cdgPartition__part_amount_due__c, account."lastPaymentAmount" AS cdgPartition__part_Last_Payment_Amount__c, account."lastPaymentDate" AS cdgPartition__part_Last_Payment_Date__c, account."billingStreet", account."billingCity", account."billingState", account."billingPostalCode", account."serviceStreet" AS "ShippingStreet", ' +
                  'account."serviceCity" AS "ShippingCity", account."serviceState" AS "ShippingState", account."servicePostalCode" AS "ShippingPostalCode", CONCAT (contact."firstname", \' \', contact."lastname") AS "Name" FROM Account INNER JOIN Contact ON account."primaryContact" = contact."contactId" WHERE "accountNumber"  = $1',
     [accountNumber], (qerr, qres) => {
       done();
@@ -59,7 +59,7 @@ router.get('/getContact', (req, res, next) => {
   // query against pg, get account details
   pool.connect((err, client, done) => {
     if (err) throw err;
-    client.query('SELECT "username" AS username__c, "email" AS email, "phone" AS phone, "street" AS mailingStreet, "city" AS mailingCity, "state" AS mailingState, "postalCode" AS mailingPostalcode, "firstname", "lastname" FROM "contact" where "accountId" = $1',
+    client.query('SELECT "username" AS cdgPartition__username__c, "email" AS email, "phone" AS phone, "street" AS mailingStreet, "city" AS mailingCity, "state" AS mailingState, "postalCode" AS mailingPostalcode, "firstname", "lastname" FROM "contact" where "accountId" = $1',
       [accountID], (qerr, qres) => {
         done();
         if (qerr) {
