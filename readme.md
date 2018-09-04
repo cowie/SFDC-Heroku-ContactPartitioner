@@ -37,7 +37,7 @@ Flow is - CTI pops to the LEX page with the phone number from the call. LEX page
  6. Copy/Paste the code components in the sfdx folder in this package into your SF org using Console. Start with Part_PartitionHelper.cls, then Part_PartitionController.cls, then part_CTIPopPanel component, then part_CTIPopPage app. I was too lazy to test coverage :D
  7. Activate MyDomain for your org. Get coffee, it takes a minute or so.
  8. When done with MyDomain (like you tested and flipped over the domain) go to the following: http://Yourdomain.lightning.force.com/c/part_CTIPopPage.app
- 9. Add ?phoneNumber= and use the below examples. get ype.
+ 9. Add ?phoneNumber= and use the below examples. get hype?
 
  
 
