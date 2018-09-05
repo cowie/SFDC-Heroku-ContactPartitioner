@@ -2,7 +2,7 @@ public class part_partitionHelper {
     
     public static string callGetAccountByPhone(string phoneNumber){
 		endpointInfo__mdt endpoint = [select domainURL__c from endpointInfo__mdt where developername = 'partitionDemo'];
-		String url = endpoint.domainURL__c + '/api/getAccountsByPhone';
+		String url = endpoint.domainURL__c + 'api/getAccountsByPhone';
 		Http h = new Http();
         
         HttpRequest req = new HttpRequest();
@@ -17,7 +17,7 @@ public class part_partitionHelper {
     
     public static Account callGetAccount(string accountNumber){
         endpointInfo__mdt endpoint = [select domainURL__c from endpointInfo__mdt where developername = 'partitionDemo'];
-		String url = endpoint.domainURL__c + '/api/getAccountByAcctNumber';
+		String url = endpoint.domainURL__c + 'api/getAccountByAcctNumber';
 		Http h = new Http();
         
         HttpRequest req = new HttpRequest();
@@ -39,7 +39,7 @@ public class part_partitionHelper {
     public static Contact callGetContact(string accountID){
         system.debug('helper.callGetContact');
         endpointInfo__mdt endpoint = [select domainURL__c from endpointInfo__mdt where developername = 'partitionDemo'];
-		String url = endpoint.domainURL__c + '/api/getContact';
+		String url = endpoint.domainURL__c + 'api/getContact';
 		
         system.debug(url);
         system.debug('accountNumber = ' + accountID);
