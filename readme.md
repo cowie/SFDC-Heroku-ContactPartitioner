@@ -31,13 +31,12 @@ Flow is - CTI pops to the LEX page with the phone number from the call. LEX page
 ## Setup
  1. Sign up for a Salesforce org @ developer.salesforce.com, or spin up a scratch org. Or make a new sandbox. Or go to Trailhead and get yo trail on. Whatever floats yer boat, just get an org.
  2. Hit dis button to get you the Heroku instance kicked up. It'll spin up the PG DB addon and runtime, even create that database from all the csvs I loaded into this thing. If you want custom data that's up to you bud, the code is fairly locked to the columns I've thrown in there, so you'll need to alter routes/api.js calls, as well as the metadata on the SF side, and potentially the LEX component. You could definitely make this better.  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
- 3. Go into your salesforce org, and add the Heroku domain you just deployed to in Remote Site Settings.
- 4. Install this appEx package- https://login.salesforce.com/packaging/installPackage.apexp?p0=04t0b0000019qiF&isdtp=p1\
- 5. Go into your Custom Metadata area, change the value of 'partitionDemo' record in endpointURL to your heroku domain.
- 6. Copy/Paste the code components in the sfdx folder in this package into your SF org using Console. Start with Part_PartitionHelper.cls, then Part_PartitionController.cls, then part_CTIPopPanel component, then part_CTIPopPage app. I was too lazy to test coverage :D
- 7. Activate MyDomain for your org. Get coffee, it takes a minute or so.
- 8. When done with MyDomain (like you tested and flipped over the domain) go to the following: http://Yourdomain.lightning.force.com/c/part_CTIPopPage.app
- 9. Add ?phoneNumber= and use the below examples. get hype?
+ 3. Go into your salesforce org, activate mydomain while you do the rest o this.
+ 4. Add the Heroku domain you just deployed to in Remote Site Settings.
+ 5. Install this appEx package- https://login.salesforce.com/packaging/installPackage.apexp?p0=04t0b0000019qiF&isdtp=p1\
+ 6. Go into your Custom Metadata area, change the value of 'partitionDemo' record in endpointURL to your heroku domain.
+ 7. When done with MyDomain (like you tested and flipped over the domain) go to the following: http://Yourdomain.lightning.force.com/c/part_CTIPopPage.app
+ 8. Add ?phoneNumber= and use the below examples. get hype?
 
  
 
